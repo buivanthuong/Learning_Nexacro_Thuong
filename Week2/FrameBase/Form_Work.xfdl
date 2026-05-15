@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Work" width="1280" height="720" titletext="Form_Work">
+    <Layouts>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <Grid id="Grid00" taborder="0" left="18" top="280" width="742" height="230" binddataset="dsSp" border="2" borderRadius="4px" formatid="default" color="#0e162e" wheelscrollrow="10" layoutorder="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="180"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Mã SP"/>
+                <Cell col="1" text="Tên SP"/>
+                <Cell col="2" text="Chi tiết"/>
+                <Cell col="3" text="Ngày đặt"/>
+                <Cell col="4" text="Tình trạng"/>
+                <Cell col="5" text="Giá VNĐ"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SP_ID" edittype="normal"/>
+                <Cell col="1" text="bind:Name" edittype="normal"/>
+                <Cell col="2" text="bind:Detail" edittype="normal"/>
+                <Cell col="3" text="bind:Date" edittype="normal"/>
+                <Cell col="4" text="bind:Status" edittype="normal"/>
+                <Cell col="5" text="bind:Price" edittype="normal"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="Quản Lý Đơn Hàng" left="18" top="14" width="196" height="30" font="bold 16px/normal &quot;Arial&quot;"/>
+        <Tab id="Tab00" taborder="3" tabindex="0" left="24" top="54" width="792" height="166" onchanged="Tab00_onchanged">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tất cả">
+              <Layouts>
+                <Layout>
+                  <Combo id="Combo00" taborder="0" text="Id Đơn hàng" left="13" top="16" width="150" height="20" value="" index="-1"/>
+                  <Combo id="Combo00_00" taborder="1" text="Trạng thái" left="13" top="54" width="150" height="20" value="" index="-1"/>
+                  <Edit id="edName" taborder="2" left="266" top="16" width="286" height="21" tooltiptext="Tên sản phẩm" displaynulltext="Tên sản phẩm"/>
+                  <Edit id="Edit00_00" taborder="3" left="266" top="54" width="286" height="21" displaynulltext="Mã sản phẩm"/>
+                  <Button id="Button00" taborder="4" text=" Tìm kiếm" left="616" top="17" width="120" height="47" icon="url('theme://images/img_grip.png')" border="3" borderRadius="12px" boxShadow="12" background="#3930ba" font="bold 12px/normal &quot;Arial&quot;" color="#e4e6fa" onclick="Tab00_Tabpage1_Button00_onclick"/>
+                  <Calendar id="Calendar00" taborder="5" left="13" top="88" width="154" height="20" displaynulltext="Ngày đặt hàng" dateformat="dd/MM/yyyy" editformat="dd/MM/yyyy"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Chờ xác nhận"/>
+            <Tabpage id="Tabpage3" text="Chờ lấy hàng"/>
+            <Tabpage id="Tabpage4" text="Đang giao"/>
+            <Tabpage id="Tabpage5" text="Đã giao"/>
+            <Tabpage id="Tabpage6" text="Đã hủy"/>
+          </Tabpages>
+        </Tab>
+        <Static id="Static00_00" taborder="2" text="Đơn Hàng" left="18" top="240" width="196" height="30" font="bold 16px/normal &quot;Arial&quot;"/>
+        <Static id="stSum" taborder="4" text="Tổng tiên: xxx" left="410" top="530" width="350" height="40" textAlign="right" font="bold italic 14px/normal &quot;Arial&quot;"/>
+        <Button id="Button00" taborder="5" text="Xóa" left="27" top="600" width="107" height="33" border="1" borderRadius="5px" boxShadow="4" background="#aa2508" color="#ededed" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="6" text="Thêm" left="160" top="601" width="108" height="31" border="1" borderRadius="5px" boxShadow="5" background="#24c029" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="7" text="Hủy" left="296" top="604" width="94" height="29" border="1" borderRadius="5px" boxShadow="5" onclick="Button02_onclick"/>
+        <Button id="Button03" taborder="8" text="Import" left="535" top="605" width="111" height="30" border="2" borderRadius="6px" boxShadow="6" background="#3335c1" color="#efefef" onclick="Button03_onclick"/>
+        <Button id="Button03_00" taborder="9" text="Exprort" left="650" top="605" width="111" height="30" background="#13801f" color="#f1a688" border="2" borderRadius="5px" boxShadow="5" onclick="Button03_00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSp" oncolumnchanged="dsSp_oncolumnchanged" onload="dsSp_onload">
+        <ColumnInfo>
+          <ConstColumn id="SP_ID" type="STRING" size="30"/>
+          <Column id="Name" type="STRING" size="256"/>
+          <Column id="Detail" type="STRING" size="256"/>
+          <Column id="Date" type="STRING" size="256"/>
+          <Column id="Status" type="STRING" size="256"/>
+          <Column id="Price" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="SP_ID">1</Col>
+            <Col id="Name">Móc khóa</Col>
+            <Col id="Detail">Màu vàng, kích thước nhỏ</Col>
+            <Col id="Date">15/05/2026</Col>
+            <Col id="Status">Đang giao</Col>
+            <Col id="Price">100000</Col>
+          </Row>
+          <Row>
+            <Col id="SP_ID">2</Col>
+            <Col id="Name">Son môi</Col>
+            <Col id="Detail">Màu đỏ, size XXL, huyền bí</Col>
+            <Col id="Date">15/05/2026</Col>
+            <Col id="Status">Đang giao</Col>
+            <Col id="Price">40000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edit_name00" propid="value" datasetid="dsSp" columnid="SP_ID"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[this.Tab00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+    this.fn_sum();
+};
+
+this.dsSp_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    this.fn_sum();
+};
+
+this.dsSp_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+    this.fn_sum();
+};
+
+this.fn_sum = function()
+{
+    var sum = 0;
+
+    for (var i = 0; i < this.dsSp.getRowCount(); i++) {
+        sum += nexacro.toNumber(this.dsSp.getColumn(i, "Price"));
+    }
+
+    this.stSum.set_text("Tổng tiền: " + sum + " VNĐ");
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if (this.dsSp.rowposition >= 0) {
+        this.dsSp.deleteRow(this.dsSp.rowposition);
+        this.fn_sum();
+    }
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var nRow = this.dsSp.addRow();
+    this.dsSp.setColumn(nRow, "SP_ID", "");
+    this.dsSp.setColumn(nRow, "Name", "");
+    this.dsSp.setColumn(nRow, "Detail", "");
+    this.dsSp.setColumn(nRow, "Date", "");
+    this.dsSp.setColumn(nRow, "Status", "");
+    this.dsSp.setColumn(nRow, "Price", 0);
+
+    this.fn_sum();
+};
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.dsSp.deleteAll();
+
+    var nRow = this.dsSp.addRow();
+    this.dsSp.setColumn(nRow, "SP_ID", "1");
+    this.dsSp.setColumn(nRow, "Name", "Móc khóa");
+    this.dsSp.setColumn(nRow, "Detail", "Màu vàng, kích thước nhỏ");
+    this.dsSp.setColumn(nRow, "Date", "15/05/2026");
+    this.dsSp.setColumn(nRow, "Status", "Đang giao");
+    this.dsSp.setColumn(nRow, "Price", 100000);
+
+    var nRow2 = this.dsSp.addRow();
+    this.dsSp.setColumn(nRow2, "SP_ID", "2");
+    this.dsSp.setColumn(nRow2, "Name", "Son môi");
+    this.dsSp.setColumn(nRow2, "Detail", "Màu đỏ, size XXL, huyền bí");
+    this.dsSp.setColumn(nRow2, "Date", "15/05/2026");
+    this.dsSp.setColumn(nRow2, "Status", "Đang giao");
+    this.dsSp.setColumn(nRow2, "Price", 40000);
+
+    this.fn_sum();
+};
+
+this.Tab00_Tabpage1_Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+   var formTab   = this.Tab00.Tabpage1.form;
+    var objName   = formTab.edName;
+    var objID     = formTab.Edit00_00;
+    var objDate   = formTab.Calendar00;
+    var objStatus = formTab.Combo00_00;
+
+    var sName   = (objName && objName.value != null) ? nexacro.trim(String(objName.value)) : "";
+    var sID     = (objID && objID.value != null) ? nexacro.trim(String(objID.value)) : "";
+	var sDate = "";
+	if (objDate && objDate.text != null) {
+		sDate = nexacro.trim(String(objDate.text));
+		if (sDate == "/  /" || sDate == "//" || sDate == "") {
+			sDate = "";
+		}
+	}	
+	var sStatus = (objStatus && objStatus.value != null) ? nexacro.trim(String(objStatus.value)) : "";
+
+    var arrFilter = [];
+
+    // reset filter trước
+    this.dsSp.filter("");
+
+    // chỉ add điều kiện nếu input có data
+    if (sName !== "") {
+        arrFilter.push("String(Name).toUpperCase().indexOf('" + sName.toUpperCase() + "') >= 0");
+    }
+
+    if (sID !== "") {
+        arrFilter.push("String(SP_ID).toUpperCase().indexOf('" + sID.toUpperCase() + "') >= 0");
+    }
+
+    if (sStatus !== "") {
+        arrFilter.push("String(Status).toUpperCase().indexOf('" + sStatus.toUpperCase() + "') >= 0");
+    }
+
+    if (sDate !== "") {
+        arrFilter.push("String(Date).indexOf('" + sDate + "') >= 0");
+    }
+
+    // nếu không nhập gì thì hiện toàn bộ
+    if (arrFilter.length == 0) {
+        this.dsSp.filter("");
+        this.fn_sum();
+        return;
+    }
+
+    // tìm theo OR
+    var sFilter = arrFilter.join(" && ");
+
+    trace("filter = " + sFilter);
+
+    this.dsSp.filter(sFilter);
+    this.fn_sum();
+};
+
+this.Form_onload = function(obj,e)
+{
+    this.fn_sum();
+};
+this.fn_jsonToDs = function(objDs, sJson)
+{
+    if (!sJson || nexacro.trim(String(sJson)) == "") {
+        objDs.clearData();
+        return;
+    }
+
+    var arr;
+    try {
+        arr = JSON.parse(sJson);
+    } catch (e) {
+        alert("JSON không hợp lệ");
+        return;
+    }
+
+    objDs.clearData();
+
+    for (var i = 0; i < arr.length; i++) {
+        var nRow = objDs.addRow();
+
+        objDs.setColumn(nRow, "SP_ID",  arr[i].SP_ID != null ? arr[i].SP_ID : "");
+        objDs.setColumn(nRow, "Name",   arr[i].Name != null ? arr[i].Name : "");
+        objDs.setColumn(nRow, "Detail", arr[i].Detail != null ? arr[i].Detail : "");
+        objDs.setColumn(nRow, "Date",   arr[i].Date != null ? arr[i].Date : "");
+        objDs.setColumn(nRow, "Status", arr[i].Status != null ? arr[i].Status : "");
+        objDs.setColumn(nRow, "Price",  arr[i].Price != null ? arr[i].Price : 0);
+    }
+};
+
+this.fn_dsToJson = function(objDs)
+{
+    var arr = [];
+    var nRow = objDs.getRowCount();
+
+    for (var i = 0; i < nRow; i++) {
+        arr.push({
+            SP_ID  : objDs.getColumn(i, "SP_ID"),
+            Name   : objDs.getColumn(i, "Name"),
+            Detail : objDs.getColumn(i, "Detail"),
+            Date   : objDs.getColumn(i, "Date"),
+            Status : objDs.getColumn(i, "Status"),
+            Price  : objDs.getColumn(i, "Price")
+        });
+    }
+
+    return JSON.stringify(arr, null, 2);
+};
+
+this.fn_downloadJsonFile = function(sFileName, sContent)
+{
+    var blob = new Blob([sContent], {type: "application/json;charset=utf-8;"});
+    var link = document.createElement("a");
+    var url = window.URL.createObjectURL(blob);
+
+    link.href = url;
+    link.download = sFileName;
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+};
+
+this.fn_openJsonFileBrowser = function()
+{
+    var pThis = this;
+    var input = document.createElement("input");
+
+    input.type = "file";
+    input.accept = ".json,application/json";
+
+    input.onchange = function(evt)
+    {
+        var file = evt.target.files[0];
+        if (!file) return;
+
+        var reader = new FileReader();
+
+        reader.onload = function(ev)
+        {
+            try {
+                var sJson = ev.target.result;
+                pThis.fn_jsonToDs(pThis.dsSp, sJson);
+                pThis.fn_sum();
+                alert("Import file JSON thành công.");
+            } catch (ex) {
+                alert("Đọc file thất bại: " + ex.message);
+            }
+        };
+
+        reader.onerror = function()
+        {
+            alert("Không thể đọc file.");
+        };
+
+        reader.readAsText(file, "utf-8");
+    };
+
+    input.click();
+};
+
+this.Button03_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var sJson = this.fn_dsToJson(this.dsSp);
+    this.fn_downloadJsonFile("dsSp_export.json", sJson);
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fn_openJsonFileBrowser();
+};]]></Script>
+  </Form>
+</FDL>
