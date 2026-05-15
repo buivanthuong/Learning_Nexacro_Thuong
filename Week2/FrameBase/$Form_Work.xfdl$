@@ -3,10 +3,11 @@
   <Form id="Form_Work" width="1280" height="720" titletext="Form_Work">
     <Layouts>
       <Layout width="1280" height="720" screenid="Desktop_screen">
-        <Grid id="Grid00" taborder="0" left="18" top="280" width="742" height="230" binddataset="dsSp" border="2" borderRadius="4px" formatid="default" color="#0e162e" wheelscrollrow="10" layoutorder="10">
+        <Grid id="Grid00" taborder="0" left="18" top="280" width="742" height="230" binddataset="dsSp" border="2" borderRadius="4px" formatid="default" color="#0e162e" wheelscrollrow="10" layoutorder="10" onheadclick="Grid00_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
+                <Column size="48" band="left"/>
                 <Column size="80"/>
                 <Column size="100"/>
                 <Column size="180"/>
@@ -17,22 +18,30 @@
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
+                <Row size="24" band="summ"/>
               </Rows>
               <Band id="head">
-                <Cell text="Mã SP"/>
-                <Cell col="1" text="Tên SP"/>
-                <Cell col="2" text="Chi tiết"/>
-                <Cell col="3" text="Ngày đặt"/>
-                <Cell col="4" text="Tình trạng"/>
-                <Cell col="5" text="Giá VNĐ"/>
+                <Cell edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="Mã SP"/>
+                <Cell col="2" text="Tên SP"/>
+                <Cell col="3" text="Chi tiết"/>
+                <Cell col="4" text="Ngày đặt"/>
+                <Cell col="5" text="Tình trạng"/>
+                <Cell col="6" text="Giá VNĐ"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:SP_ID" edittype="normal"/>
-                <Cell col="1" text="bind:Name" edittype="normal"/>
-                <Cell col="2" text="bind:Detail" edittype="normal"/>
-                <Cell col="3" text="bind:Date" edittype="normal"/>
-                <Cell col="4" text="bind:Status" edittype="normal"/>
-                <Cell col="5" text="bind:Price" edittype="normal"/>
+                <Cell edittype="checkbox" displaytype="checkboxcontrol" text="bind:Check"/>
+                <Cell col="1" text="bind:SP_ID" edittype="normal"/>
+                <Cell col="2" text="bind:Name" edittype="normal"/>
+                <Cell col="3" text="bind:Detail" edittype="normal"/>
+                <Cell col="4" text="bind:Date" edittype="normal"/>
+                <Cell col="5" text="bind:Status" edittype="normal"/>
+                <Cell col="6" text="bind:Price" edittype="normal"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" colspan="5" text="Tổng tiền"/>
+                <Cell col="6" expr="dataset.getSum('parseInt(Price)')" displaytype="currency"/>
               </Band>
             </Format>
           </Formats>
@@ -44,7 +53,7 @@
               <Layouts>
                 <Layout>
                   <Combo id="Combo00" taborder="0" text="Id Đơn hàng" left="13" top="16" width="150" height="20" value="" index="-1"/>
-                  <Combo id="Combo00_00" taborder="1" text="Trạng thái" left="13" top="54" width="150" height="20" value="" index="-1"/>
+                  <Combo id="Combo00_00" taborder="1" text="Trạng thái" left="13" top="54" width="150" height="20" value="" index="-1" innerdataset="dsStatus" codecolumn="code" datacolumn="name" displaynulltext="Trạng thái"/>
                   <Edit id="edName" taborder="2" left="266" top="16" width="286" height="21" tooltiptext="Tên sản phẩm" displaynulltext="Tên sản phẩm"/>
                   <Edit id="Edit00_00" taborder="3" left="266" top="54" width="286" height="21" displaynulltext="Mã sản phẩm"/>
                   <Button id="Button00" taborder="4" text=" Tìm kiếm" left="616" top="17" width="120" height="47" icon="url('theme://images/img_grip.png')" border="3" borderRadius="12px" boxShadow="12" background="#3930ba" font="bold 12px/normal &quot;Arial&quot;" color="#e4e6fa" onclick="Tab00_Tabpage1_Button00_onclick"/>
@@ -77,9 +86,11 @@
           <Column id="Date" type="STRING" size="256"/>
           <Column id="Status" type="STRING" size="256"/>
           <Column id="Price" type="INT" size="256"/>
+          <Column id="Check" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
+            <Col id="Check">0</Col>
             <Col id="SP_ID">1</Col>
             <Col id="Name">Móc khóa</Col>
             <Col id="Detail">Màu vàng, kích thước nhỏ</Col>
@@ -88,12 +99,45 @@
             <Col id="Price">100000</Col>
           </Row>
           <Row>
+            <Col id="Check">0</Col>
             <Col id="SP_ID">2</Col>
             <Col id="Name">Son môi</Col>
             <Col id="Detail">Màu đỏ, size XXL, huyền bí</Col>
             <Col id="Date">15/05/2026</Col>
             <Col id="Status">Đang giao</Col>
             <Col id="Price">40000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsStatus">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="50"/>
+          <Column id="name" type="STRING" size="50"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code"/>
+            <Col id="name">Tất cả</Col>
+          </Row>
+          <Row>
+            <Col id="code">Chờ xác nhận</Col>
+            <Col id="name">Chờ xác nhận</Col>
+          </Row>
+          <Row>
+            <Col id="code">Chờ lấy hàng</Col>
+            <Col id="name">Chờ lấy hàng</Col>
+          </Row>
+          <Row>
+            <Col id="code">Đang giao</Col>
+            <Col id="name">Đang giao</Col>
+          </Row>
+          <Row>
+            <Col id="code">Đã giao</Col>
+            <Col id="name">Đã giao</Col>
+          </Row>
+          <Row>
+            <Col id="code">Đã hủy</Col>
+            <Col id="name">Đã hủy</Col>
           </Row>
         </Rows>
       </Dataset>
@@ -129,10 +173,14 @@ this.fn_sum = function()
 
 this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-    if (this.dsSp.rowposition >= 0) {
-        this.dsSp.deleteRow(this.dsSp.rowposition);
-        this.fn_sum();
-    }
+
+	for (var i = this.dsSp.getRowCount() - 1; i >= 0; i--) {
+		if (this.dsSp.getColumn(i, "Check") == '1') {
+			this.dsSp.deleteRow(i);
+		}
+	}
+
+	this.fn_sum();
 };
 
 this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -153,6 +201,7 @@ this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
     this.dsSp.deleteAll();
 
     var nRow = this.dsSp.addRow();
+	this.dsSp.setColumn(nRow, "Check", "0");
     this.dsSp.setColumn(nRow, "SP_ID", "1");
     this.dsSp.setColumn(nRow, "Name", "Móc khóa");
     this.dsSp.setColumn(nRow, "Detail", "Màu vàng, kích thước nhỏ");
@@ -161,6 +210,7 @@ this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
     this.dsSp.setColumn(nRow, "Price", 100000);
 
     var nRow2 = this.dsSp.addRow();
+	this.dsSp.setColumn(nRow2, "Check", "0");
     this.dsSp.setColumn(nRow2, "SP_ID", "2");
     this.dsSp.setColumn(nRow2, "Name", "Son môi");
     this.dsSp.setColumn(nRow2, "Detail", "Màu đỏ, size XXL, huyền bí");
@@ -342,6 +392,67 @@ this.Button03_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
     this.fn_openJsonFileBrowser();
-};]]></Script>
+};
+
+this.gv_isCheckAll = 0;
+this.gf_setCheckAll = function(obj:Grid, e:GridClickEventInfo)
+{
+	var strColID = obj.getCellProperty("body", e.cell, "text").replace(/bind:/i, "");
+		
+	this.gv_isCheckAll = (this.gv_isCheckAll ? 0 : 1);
+	
+	for(var i=0; i< this.dsSp.getRowCount(); i++)
+	{
+		this.dsSp.setColumn(i, strColID, this.gv_isCheckAll);
+	}
+	
+	obj.setCellProperty("Head", 0, "text", this.gv_isCheckAll);
+}
+this.Grid00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		this.gf_setCheckAll(obj, e);
+	}
+		
+	var objDs = this.objects[obj.binddataset];
+ 										
+	for (var i = 0; i < obj.getCellCount("head"); i++)
+	{		
+		var sHeadText = obj.getCellText(-1, i);
+        var nLen      = sHeadText.length - 1;
+		
+		if (i == e.cell)
+		{
+            var sColId = (obj.getCellProperty("body", e.col,"text")).toString().split(":");
+			
+			if (sHeadText.substring(nLen) == "▲") 
+			{
+				obj.setCellProperty( "head", i, "text", sHeadText.substring(0, nLen)+ "▼");
+				objDs.keystring = "S:-" + sColId[1];
+			}
+			else if (sHeadText.substring(nLen) == "▼") 
+			{
+				obj.setCellProperty( "head", i, "text", sHeadText.substring(0, nLen)+ "▲");
+				objDs.keystring = "S:+" + sColId[1];
+			}
+			else 
+			{
+				obj.setCellProperty( "head", i, "text", sHeadText+"▲");
+				objDs.keystring = "S:+" + sColId[1];
+			}
+		}
+		else
+		{
+
+			if (sHeadText.substring(nLen) == "▲" || sHeadText.substring(nLen) == "▼") 
+			{
+				obj.setCellProperty( "head", i, "text", sHeadText.substring(0, nLen));
+			}
+
+		}
+	}	
+};
+]]></Script>
   </Form>
 </FDL>
