@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="fr_login" width="1280" height="720" titletext="Login_Form">
+    <Layouts>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <Button id="bt_ok" taborder="0" text="Log in" left="71" top="181" width="200" height="30" color="#ffffff" borderRadius="5px" boxShadow="1" background="#0a18e0" onclick="bt_ok_onclick"/>
+        <Edit id="ed_name" taborder="1" left="71" top="73" width="200" height="27" textAlign="right" displaynulltext="User name"/>
+        <Static id="Static00" taborder="2" text="Already using App" left="71" top="40" width="140" height="23"/>
+        <CheckBox id="cb_remember" taborder="3" text="Remember me." left="71" top="147" width="103" height="20" onclick="cb_remember_onclick"/>
+        <Static id="Static00_00" taborder="4" text="New App?" left="71" top="210" width="140" height="23"/>
+        <Button id="bt_sign" taborder="5" text="Sign up now" left="71" top="240" width="200" height="30" color="#ffffff" background="#6d6d6d" border="1" borderRadius="5px" boxShadow="1" onclick="bt_sign_onclick"/>
+        <Edit id="ed_pw" taborder="6" left="71" top="107" width="200" height="27" textAlign="right" displaynulltext="Password" password="true"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="720" screenid="screen00"/>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.bt_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var userName = this.ed_name.text;
+
+    if (userName == null || userName.trim() == "") {
+        alert("Please input user name!");
+    } else {
+        var strMsg = "Welcome " + userName + ", login is success.";
+        alert(strMsg);
+		var formUrl = "FrameBase::Dashboard.xfdl";
+        this.getOwnerFrame().set_formurl(formUrl);
+    }
+};
+this.bt_sign_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	    var formUrl = "FrameBase::Sign.xfdl";
+        this.getOwnerFrame().set_formurl(formUrl);
+};
+
+this.cb_remember_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

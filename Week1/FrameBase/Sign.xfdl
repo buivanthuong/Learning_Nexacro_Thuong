@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Sign" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="bt_cancel" taborder="0" text="Cancel" left="170" top="305" width="120" height="40" onclick="bt_cancel_onclick" borderRadius="5px"/>
+        <Edit id="Edit00" taborder="1" left="37" top="71" width="253" height="20" borderRadius="5px" displaynulltext="Full name"/>
+        <Edit id="Edit01" taborder="2" left="37" top="111" width="253" height="20" borderRadius="5px" displaynulltext="Password"/>
+        <CheckBox id="CheckBox00" taborder="3" text="Yes, I have read and agree to the policys" left="37" top="265" width="253" height="25"/>
+        <Calendar id="Calendar00" taborder="4" left="37" top="233" width="253" height="20" displaynulltext="Birthday"/>
+        <Static id="Static00" taborder="5" text="Create an application" left="37" top="21" width="203" height="19" font="bold 18px/normal &quot;Arial&quot;"/>
+        <Button id="bt_cancel00" taborder="6" text="Register" left="37" top="305" width="120" height="40" onclick="bt_cancel_onclick" borderRadius="5px" background="#0404c7" color="#fbf0ed"/>
+        <Edit id="Edit01_00" taborder="7" left="37" top="151" width="253" height="20" borderRadius="5px" displaynulltext="Phone"/>
+        <Edit id="Edit01_00_00" taborder="8" left="37" top="190" width="253" height="20" borderRadius="5px" displaynulltext="Address"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.bt_cancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var formUrl = "FrameBase::Form_Work.xfdl";
+        this.getOwnerFrame().set_formurl(formUrl);
+};
+]]></Script>
+  </Form>
+</FDL>
